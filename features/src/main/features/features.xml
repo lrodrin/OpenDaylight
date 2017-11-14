@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=4 tabstop=4: -->
+<!--
+Copyright © 2015 Rashmi and others. All rights reserved.
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License v1.0 which accompanies this distribution,
+and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<features name="odl-hello-1.0.0-SNAPSHOT" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+  <repository>mvn:org.opendaylight.yangtools/features-yangtools/1.1.3-SNAPSHOT/xml/features</repository>
+  <repository>mvn:org.opendaylight.controller/features-mdsal/1.5.3-SNAPSHOT/xml/features</repository>
+  <repository>mvn:org.opendaylight.mdsal.model/features-mdsal-model/0.10.3-SNAPSHOT/xml/features</repository>
+  <repository>mvn:org.opendaylight.netconf/features-restconf/1.5.3-SNAPSHOT/xml/features</repository>
+  <repository>mvn:org.opendaylight.dlux/features-dlux/0.5.3-SNAPSHOT/xml/features</repository>
+  <feature name='odl-hello-api' version='1.0.0-SNAPSHOT' description='OpenDaylight :: hello :: api'>
+    <feature version='0.10.3-SNAPSHOT'>odl-mdsal-models</feature>
+    <bundle>mvn:org.opendaylight.hello/hello-api/1.0.0-SNAPSHOT</bundle>
+  </feature>
+  <feature name='odl-hello' version='1.0.0-SNAPSHOT' description='OpenDaylight :: hello'>
+    <feature version='1.5.3-SNAPSHOT'>odl-mdsal-broker</feature>
+    <feature version='1.0.0-SNAPSHOT'>odl-hello-api</feature>
+    <bundle>mvn:org.opendaylight.hello/hello-impl/1.0.0-SNAPSHOT</bundle>
+    <configfile finalname="${configfile.directory}/hello.xml">mvn:org.opendaylight.hello/hello-impl/1.0.0-SNAPSHOT/xml/config</configfile>
+  </feature>
+  <feature name='odl-hello-rest' version='1.0.0-SNAPSHOT' description='OpenDaylight :: hello :: REST'>
+    <feature version="1.0.0-SNAPSHOT">odl-hello</feature>
+    <feature version="1.5.3-SNAPSHOT">odl-restconf</feature>
+  </feature>
+  <feature name='odl-hello-ui' version='1.0.0-SNAPSHOT' description='OpenDaylight :: hello :: UI'>
+    <feature version="1.5.3-SNAPSHOT">odl-hello-rest</feature>
+    <feature version="1.5.3-SNAPSHOT">odl-mdsal-apidocs</feature>
+    <feature version="1.5.3-SNAPSHOT">odl-mdsal-xsql</feature>
+    <feature version="0.5.3-SNAPSHOT">odl-dlux-yangui</feature>
+  </feature>
+
+</features>
